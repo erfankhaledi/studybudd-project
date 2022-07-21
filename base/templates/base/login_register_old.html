@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block content %}
+
+{% if page == 'login' %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label>username:</label>
+            <input type="text" name="username" placeholder="Enter username" />
+
+            <label>password:</label>
+            <input type="password" name="password" placeholder="Enter password" />
+
+            <input type="submit" value="Login" />
+        </form>
+        <p>Haven't Signed up yet?</p>
+        <a href="{% url 'register' %}">Sign Up</a>
+    </div>
+    {% else %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <input type="submit" value="Register" />
+            <p>Already Signed up?</p>
+            <a href="{% url 'login' %}">Login</a>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}
